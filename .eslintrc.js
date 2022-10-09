@@ -34,6 +34,7 @@ module.exports = {
     'no-empty-pattern': 0,
     'no-alert': 0,
     'react-hooks/exhaustive-deps': 0,
+    '@typescript-eslint/comma-dangle': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/space-before-function-paren': 0
   }
