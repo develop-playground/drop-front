@@ -1,11 +1,9 @@
 import React from 'react';
 
-import NaverMapTest from './NaverMapTest';
-
 function App() {
   return (
     <div>
-      <NaverMapTest />
+      <h1 className='text-3xl font-bold underline'>Hello world!</h1>
     </div>
   );
 }
