@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react';
-import App from './App';
+import App from '../../App';
 
 describe('<App> 테스트', () => {
   const setup = async () => {
