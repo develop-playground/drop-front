@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-function NaverMapTest() {
+const NaverMapTest = () => {
   const mapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,6 +24,6 @@ function NaverMapTest() {
       <h1 className='text-3xl font-bold underline'>Hello world!</h1>
     </>
   );
-}
+};
 
 export default NaverMapTest;
