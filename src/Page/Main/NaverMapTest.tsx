@@ -21,7 +21,8 @@ const NaverMapTest = () => {
   return (
     <>
       <div ref={mapRef} style={{ width: '400px', height: '400px' }} />
-      <h1 className='text-3xl font-bold underline'>Hello world!</h1>
+      <div className=''></div>
+      <h1 className='text-black'>Hello world!</h1>
     </>
   );
 };
