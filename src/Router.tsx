@@ -1,7 +1,6 @@
 import React from 'react';
-import { createBrowserRouter, createRoutesFromElements, redirect, Route } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Outlet, redirect, Route } from 'react-router-dom';
 import { Cookies } from 'react-cookie';
-import NaverMapTest from './pages/Main/NaverMapTest';
 import Login from './pages/Login';
 
 const cookies = new Cookies(document.cookie);
@@ -27,14 +26,14 @@ async function redirectAuth() {
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<></>}>
-      <Route element={<></>} loader={redirectMain}>
+    <Route path='/' element={<Outlet />}>
+      <Route element={<Outlet />} loader={redirectMain}>
         <Route path={'login'} element={<Login />} />
       </Route>
       <Route element={<></>} loader={redirectAuth}>
         <Route path={''} loader={redirectMain} />
-        <Route path={`main`} element={<NaverMapTest />} />
-        <Route path={`sub1`} element={<></>} />
+        <Route path={`drop`} element={<div />} />
+        <Route path={`sub1`} element={<div />} />
       </Route>
     </Route>
   )
