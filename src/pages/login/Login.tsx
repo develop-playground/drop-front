@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from './Login.style';
 // @ts-ignore
-import DropLogo from '../asset/svg/logo_b.svg';
+import DropLogo from '../../asset/svg/logo_b.svg';
 // @ts-ignore
-import KakaoLogo from '../asset/svg/kakao_logo_brown.svg';
+import KakaoLogo from '../../asset/svg/kakao_logo_brown.svg';
 
 const Login = () => {
   return (

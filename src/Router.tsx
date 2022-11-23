@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, createRoutesFromElements, Outlet, redirect, Route } from 'react-router-dom';
 import { Cookies } from 'react-cookie';
-import Login from './pages/Login';
+import Login from './pages/login/Login';
 
 const cookies = new Cookies(document.cookie);
 

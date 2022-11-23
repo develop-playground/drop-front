@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Mixin } from '../common';
+import { Mixin } from '../../common';
 
 export const Container = styled.div`
   width: 100%;
