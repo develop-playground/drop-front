@@ -1,5 +1,5 @@
 // @ts-ignore
-import { AlignItemsProperty, FlexDirectionProperty, JustifyContentProperty } from 'csstype';
+import { AlignItemsProperty, FlexDirectionProperty, JustifyContentProperty, fontWeight } from 'csstype';
 import { css } from 'styled-components';
 
 interface FlexLayoutProps {
@@ -22,4 +22,15 @@ export const FlexLayout = ({ direction = 'row', justify = 'flex-start', align = 
   -webkit-box-align: ${align};
   -ms-flex-align: ${align};
   align-items: ${align};
+`;
+
+interface FontStyleProps {
+  fontFamily?: 'Gmarket Sans' | 'pretendard';
+  weight?: fontWeight;
+  size?: '12' | '14' | '16' | '18' | '22';
+}
+export const fontStyle = (props: FontStyleProps) => css`
+  font-family: ${props.fontFamily ?? ''};
+  font-weight: ${props.weight ?? ''};
+  font-size: ${props.size ?? 0}px;
 `;
