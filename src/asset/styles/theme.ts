@@ -1,6 +1,6 @@
 const color = {
-  greyL: '#D1D1D1',
-  greyM: '#969696',
+  LGrey: '#D1D1D1',
+  MGrey: '#969696',
   black: '#000000',
   white: '#FFFFFF',
   lime: '#C8D94D',
