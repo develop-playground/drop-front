@@ -26,5 +26,24 @@ const ImgWrapper = styled.div`
 const CustomSlider = styled(Slider)`
   .slick-dots {
     position: static;
+    li {
+      margin: 0 1px;
+    }
+
+    li button:before {
+      color: ${({ theme }) => theme.color.lime};
+    }
+  }
+
+  .slick-next {
+    border-radius: 50%;
+    background-color: #00000029;
+
+    right: 8px;
+  }
+  .slick-prev {
+    border-radius: 50%;
+    background-color: #00000029;
+    left: 8px;
   }
 `;

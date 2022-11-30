@@ -10,12 +10,20 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.div`
-  ${Mixin.FlexLayout({})};
+  ${Mixin.FlexLayout({ align: 'baseline' })};
   gap: 8px;
 `;
 
-export const DateText = styled.div``;
-export const Address = styled.div``;
+export const Icon = styled.img``;
+
+export const DateText = styled.p`
+  ${Mixin.fontStyle({ fontFamily: 'Gmarket Sans', size: '22', weight: 'bold' })}
+  line-height:22px;
+`;
+export const Address = styled.p`
+  ${Mixin.fontStyle({ fontFamily: 'pretendard', size: '12', weight: 'light' })}
+  line-hegiht:12px;
+`;
 
 export const MoreButtonWrapper = styled.div``;
 

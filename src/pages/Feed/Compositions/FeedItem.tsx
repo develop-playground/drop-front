@@ -1,7 +1,8 @@
 import React from 'react';
 import * as S from './FeedItem.style';
 import ContentSlider from './Slider/ContentSlider';
-
+// @ts-ignore
+import Icon_D from '../../../asset/svg/Icon_D.svg';
 interface FeedItemProps {
   createdDate: string;
   address: string;
@@ -14,7 +15,8 @@ const FeedItem = ({ createdDate, address, content, imageUrls }: FeedItemProps) =
     <S.Container>
       <S.Header>
         <S.Title>
-          <S.DateText>{`| ${createdDate}`}</S.DateText>
+          <S.Icon src={Icon_D} alt='icon_D'></S.Icon>
+          <S.DateText>{createdDate}</S.DateText>
           <S.Address>{address}</S.Address>
         </S.Title>
         <S.MoreButtonWrapper>수정</S.MoreButtonWrapper>
