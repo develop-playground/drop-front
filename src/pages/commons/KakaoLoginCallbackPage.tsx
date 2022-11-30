@@ -2,9 +2,17 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
 import { kakao_login_rest_key, REDIRECT_URI } from '../../common/env';
+import { AuthAtom } from '../../store/authAtom';
+import { useSetRecoilState } from 'recoil';
+import { getApiAuthKakaoCallback } from '../../network/query/authQuery';
+import AuthKakaoCallbackDto from '../../data/dto/AuthKakaoCallbackDto';
+import { useNavigate } from 'react-router-dom';
 
 const cookies = new Cookies(document.cookie);
 const KakaoLoginCallbackPage = () => {
+  const navigate = useNavigate();
+  const setAuthAtom = useSetRecoilState(AuthAtom);
+
   useEffect(() => {
     const permissionCode = window.location.search.substring(6);
 
@@ -41,26 +49,17 @@ const KakaoLoginCallbackPage = () => {
         }
         if (!res.access_token || !res.refresh_token) return false;
         setCookiesForAuth(res.access_token, res.refresh_token, 'KAKAO');
-        // UserApi.getMainUserDetail()
-        //   .then(response => {
-        //     authStore.loginUser(response);
-        //     navigate('/');
-        //   })
-        //   .catch(err => {
-        //     const { code } = err;
-        //     if (code === 'UserNotExistsException') {
-        //       alert('가입되지 않은 정보 입니다. \n모바일을 통해 가입해주세요.');
-        //       navigate('/');
-        //     } else if (code === 'UserIsSleepingException' || code === 'USER_IS_BLOCKED') {
-        //       authStore.setIsDormant(true);
-        //     } else {
-        //       authStore.logout();
-        //       modalStore.openError(err);
-        //     }
-        //   });
+        try {
+          getApiAuthKakaoCallback(res, (value: AuthKakaoCallbackDto) => {
+            setAuthAtom(value);
+            navigate('/');
+          });
+        } catch (error) {
+          alert(error);
+        }
       });
   }, []);
-  return <div></div>;
+  return <div>카카오로 로그인 중...</div>;
 };
 
 function setCookiesForAuth(idToken: string, refreshToken: string, AuthType: string) {
