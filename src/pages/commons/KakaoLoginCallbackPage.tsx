@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
-import { kakao_login_rest_key, REDIRECT_URI } from '../../common/env';
 import { AuthAtom } from '../../store/authAtom';
 import { useSetRecoilState } from 'recoil';
 import { getApiAuthKakaoCallback } from '../../network/query/authQuery';
 import AuthKakaoCallbackDto from '../../data/dto/AuthKakaoCallbackDto';
 import { useNavigate } from 'react-router-dom';
+import { kakao_login_rest_key, REDIRECT_URI } from '../../common/env';
 
 const cookies = new Cookies(document.cookie);
 const KakaoLoginCallbackPage = () => {
+  console.log("123")
   const navigate = useNavigate();
   const setAuthAtom = useSetRecoilState(AuthAtom);
-
+  const permissionCode = window.location.search.substring(6);
   useEffect(() => {
-    const permissionCode = window.location.search.substring(6);
-
     const data = {
       grant_type: 'authorization_code',
       client_id: `${kakao_login_rest_key}`,
@@ -50,7 +49,7 @@ const KakaoLoginCallbackPage = () => {
         if (!res.access_token || !res.refresh_token) return false;
         setCookiesForAuth(res.access_token, res.refresh_token, 'KAKAO');
         try {
-          getApiAuthKakaoCallback(res, (value: AuthKakaoCallbackDto) => {
+          getApiAuthKakaoCallback(permissionCode, (value: AuthKakaoCallbackDto) => {
             setAuthAtom(value);
             navigate('/');
           });

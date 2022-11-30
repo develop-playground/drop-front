@@ -5,7 +5,7 @@ import DropLogo from '../../asset/svg/logo_b.svg';
 // @ts-ignore
 import KakaoLogo from '../../asset/svg/kakao_logo_brown.svg';
 import KakaoLogin from 'react-kakao-login';
-import {kakao_login_js_key, kakao_login_rest_key, REDIRECT_URI} from "../../common/env";
+import { kakao_login_js_key, kakao_login_rest_key, REDIRECT_URI } from '../../common/env';
 
 declare global {
   interface Window {
