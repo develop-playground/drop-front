@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, createRoutesFromElements, Outlet, redirect, Route } from 'react-router-dom';
 import { Cookies } from 'react-cookie';
+import KakaoLoginCallBackPage from './pages/commons/KakaoLoginCallbackPage';
 import Login from './pages/login/Login';
 
 const cookies = new Cookies(document.cookie);
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<Outlet />}>
       <Route element={<Outlet />} loader={redirectMain}>
         <Route path={'login'} element={<Login />} />
+        <Route path={'/oauth'} element={<KakaoLoginCallBackPage />} />
       </Route>
       <Route element={<></>} loader={redirectAuth}>
         <Route path={''} loader={redirectMain} />
