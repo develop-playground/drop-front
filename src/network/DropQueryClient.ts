@@ -5,6 +5,7 @@ const DropQueryClient = new QueryClient({
     queries: {
       retry: false,
       // @ts-ignore
+      refetchOnWindowFocus: false,
       onError: () => alert('queries 에러 발생\n개발자에게 문의하세요'),
     },
     mutations: {
