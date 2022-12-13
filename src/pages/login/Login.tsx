@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as S from './Login.style';
 // @ts-ignore
-import DropLogo from '../../asset/svg/logo_b.svg';
+import DropLogo from '../../asset/login/logo_b.svg';
 // @ts-ignore
-import KakaoLogo from '../../asset/svg/kakao_logo_brown.svg';
+import KakaoLogo from '../../asset/login/kakao_logo_brown.svg';
 import KakaoLogin from 'react-kakao-login';
-import { kakao_login_js_key, kakao_login_rest_key, REDIRECT_URI } from '../../common/env';
+import { KAKAO_AUTH_URL, kakao_login_rest_key } from '../../common/env';
+// @ts-ignore
+import LoginPhone from '../../asset/login/phone mockup@2x.png';
 
 declare global {
   interface Window {
@@ -14,24 +16,11 @@ declare global {
 }
 
 const Login = () => {
-  useEffect(() => {
-    kakaoLoginInitialSet();
-  });
-  const kakaoLoginInitialSet = () => {
-    if (window.Kakao.isInitialized()) {
-      return;
-    }
-    window.Kakao.init(kakao_login_js_key);
-  };
-
-  const onClickKakaoButton = () => {
-    window.Kakao.Auth.authorize({
-      redirectUri: `${REDIRECT_URI}`,
-    });
-  };
-
   return (
     <S.Container>
+      <S.Wrapper>
+        <S.LoginPhoneImg src={LoginPhone} alt='img' />
+      </S.Wrapper>
       <S.Content>
         <S.Title data-testid='login_title'>
           나의 어떤 메일을 기록하다, <span>드롭</span>
@@ -48,7 +37,7 @@ const Login = () => {
           onSuccess={() => {}}
           render={() => <div style={{ display: 'none' }} />}
         />
-        <S.KakaoLoginButton onClick={onClickKakaoButton}>
+        <S.KakaoLoginButton onClick={() => window.open(KAKAO_AUTH_URL)}>
           <S.KakaoLogo className='ml-[12px]' src={KakaoLogo} alt='kakao' />
           카카오톡으로 로그인
           <p />

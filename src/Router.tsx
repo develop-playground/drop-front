@@ -32,11 +32,13 @@ const router = createBrowserRouter(
         <Route path={'login'} element={<Login />} />
         <Route path={'/oauth'} element={<KakaoLoginCallBackPage />} />
       </Route>
-      <Route element={<></>} loader={redirectAuth}>
+      <Route element={<Outlet />} loader={redirectAuth}>
+        <Route path={'/oauth'} element={<KakaoLoginCallBackPage />} />
         <Route path={''} loader={redirectMain} />
         <Route path={`drop`} element={<div />} />
         <Route path={`sub1`} element={<div />} />
       </Route>
+      <Route path={'/oauth'} element={<KakaoLoginCallBackPage />} />
     </Route>
   )
 );
