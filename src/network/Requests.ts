@@ -17,10 +17,8 @@ const requestForEntity = async <T>(
   retry: boolean = false
 ): Promise<T> => {
   const Authorization = cookies.get('Authorization');
-  const AuthType = cookies.get('AuthType');
   const headers = {
     Authorization,
-    AuthType,
   };
   try {
     const response = await axios(uri, {
