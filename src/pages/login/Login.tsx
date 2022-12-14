@@ -1,13 +1,13 @@
 import React from 'react';
 import * as S from './Login.style';
 // @ts-ignore
-import DropLogo from '../../asset/login/logo_b.svg';
+import DropLogo from '../../asset/svg/i_logo_b.svg';
 // @ts-ignore
-import KakaoLogo from '../../asset/login/kakao_logo_brown.svg';
+import KakaoLogo from '../../asset/svg/i_kakao_logo_brown.svg';
 import KakaoLogin from 'react-kakao-login';
 import { KAKAO_AUTH_URL, kakao_login_rest_key } from '../../common/env';
 // @ts-ignore
-import LoginPhone from '../../asset/login/phone mockup@2x.png';
+import LoginPhone from '../../asset/login/png/login_phone.png';
 
 declare global {
   interface Window {

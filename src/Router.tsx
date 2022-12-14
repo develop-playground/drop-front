@@ -3,6 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Outlet, redirect, Route 
 import { Cookies } from 'react-cookie';
 import KakaoLoginCallBackPage from './pages/commons/KakaoLoginCallbackPage';
 import Login from './pages/login/Login';
+import CreateMemoryModal from './components/modal/CreateMemoryModal';
 
 const cookies = new Cookies(document.cookie);
 
@@ -35,7 +36,14 @@ const router = createBrowserRouter(
       <Route element={<Outlet />} loader={redirectAuth}>
         <Route path={'/oauth'} element={<KakaoLoginCallBackPage />} />
         <Route path={''} loader={redirectMain} />
-        <Route path={`drop`} element={<div>로그인 햇다리</div>} />
+        <Route
+          path={`drop`}
+          element={
+            <div>
+              <CreateMemoryModal isOpen={true} setIsOpen={() => {}} />
+            </div>
+          }
+        />
         <Route path={`sub1`} element={<div />} />
       </Route>
       <Route path={'/oauth'} element={<KakaoLoginCallBackPage />} />
