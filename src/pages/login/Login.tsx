@@ -37,11 +37,13 @@ const Login = () => {
           onSuccess={() => {}}
           render={() => <div style={{ display: 'none' }} />}
         />
-        <S.KakaoLoginButton onClick={() => window.open(KAKAO_AUTH_URL)}>
-          <S.KakaoLogo className='ml-[12px]' src={KakaoLogo} alt='kakao' />
-          카카오톡으로 로그인
-          <p />
-        </S.KakaoLoginButton>
+        <a href={KAKAO_AUTH_URL}>
+          <S.KakaoLoginButton>
+            <S.KakaoLogo className='ml-[12px]' src={KakaoLogo} alt='kakao' />
+            카카오톡으로 로그인
+            <p />
+          </S.KakaoLoginButton>
+        </a>
       </S.Content>
     </S.Container>
   );
