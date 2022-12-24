@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10.606" height="16" viewBox="0 0 10.606 16">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="사각형_75" data-name="사각형 75" width="10.606" height="16" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="지도핀_아이콘" data-name="지도핀 아이콘" clip-path="url(#clip-path)">
+    <path id="패스_45" data-name="패스 45" d="M5.3,0A5.3,5.3,0,0,0,0,5.3c0,2.648,4.336,9.362,5.166,10.623a.163.163,0,0,0,.273,0c.83-1.261,5.166-7.975,5.166-10.623A5.3,5.3,0,0,0,5.3,0m0,8.2A2.922,2.922,0,1,1,8.225,5.274,2.922,2.922,0,0,1,5.3,8.2" transform="translate(0 0)" fill="#fff"/>
+  </g>
+</svg>
