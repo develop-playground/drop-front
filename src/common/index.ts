@@ -1,3 +1,3 @@
 import * as Mixin from './Mixins';
-
-export { Mixin };
+import { convertHexToRGBA } from './ConvertHexToRGBA';
+export { Mixin, convertHexToRGBA };
