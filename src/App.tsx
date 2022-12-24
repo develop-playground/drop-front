@@ -6,14 +6,16 @@ import { QueryClientProvider } from 'react-query';
 import { GlobalStyle } from './asset/styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import theme from './asset/styles/theme';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const App = () => {
   return (
     <QueryClientProvider client={DropQueryClient}>
-  		<ThemeProvider theme={theme}>     
- 			<GlobalStyle />	
-      		<RouterProvider router={router} />
- 		</ThemeProvider>
+      <ReactQueryDevtools initialIsOpen />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };
