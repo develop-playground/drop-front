@@ -1,6 +1,7 @@
 const color = {
   LGrey: '#D1D1D1',
   MGrey: '#969696',
+  DGrey: '#565656',
   black: '#000000',
   white: '#FFFFFF',
   lime: '#C8D94D',
