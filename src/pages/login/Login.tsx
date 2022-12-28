@@ -3,14 +3,7 @@ import * as S from './Login.style';
 import DropLogo from '../../asset/svg/i_logo_b.svg';
 import KakaoLogo from '../../asset/svg/i_kakao_logo_brown.svg';
 import KakaoLogin from 'react-kakao-login';
-import { KAKAO_AUTH_URL, kakao_login_rest_key } from '../../common/env';
-import LoginPhone from '../../asset/login/png/login_phone.png';
-
-declare global {
-  interface Window {
-    Kakao: any;
-  }
-}
+import LoginPhone from '../../asset/png/login/login_phone.png';
 
 const Login = () => {
   return (
@@ -29,18 +22,18 @@ const Login = () => {
           <S.Divider />
         </S.LoginTextArea>
         <KakaoLogin
-          token={kakao_login_rest_key}
+          token={process.env.REACT_APP_KAKAO_LOGIN_REST_KEY as string}
           onFail={() => {}}
           onSuccess={() => {}}
           render={() => <div style={{ display: 'none' }} />}
         />
-        <a href={KAKAO_AUTH_URL}>
+        <S.ButtonWrapper href={process.env.REACT_APP_KAKAO_AUTH_URL}>
           <S.KakaoLoginButton>
             <S.KakaoLogo className='ml-[12px]' src={KakaoLogo} alt='kakao' />
             카카오톡으로 로그인
             <p />
           </S.KakaoLoginButton>
-        </a>
+        </S.ButtonWrapper>
       </S.Content>
     </S.Container>
   );

@@ -71,3 +71,8 @@ export const LoginPhoneImg = styled.img`
 export const KakaoLogo = styled.img`
   margin-left: 12px;
 `;
+
+export const ButtonWrapper = styled.a`
+  width: 100%;
+  height: fit-content;
+`;

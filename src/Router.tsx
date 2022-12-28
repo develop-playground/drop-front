@@ -34,7 +34,6 @@ const router = createBrowserRouter(
         <Route path={'/oauth'} element={<KakaoLoginCallBackPage />} />
       </Route>
       <Route element={<Outlet />} loader={redirectAuth}>
-        <Route path={'/oauth'} element={<KakaoLoginCallBackPage />} />
         <Route path={''} loader={redirectMain} />
         <Route
           path={`drop`}
