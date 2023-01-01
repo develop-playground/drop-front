@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="38" viewBox="0 0 38 38">
+  <defs>
+    <filter id="패스_100" x="0" y="0" width="38" height="38" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+    <path id="패스_100-2" data-name="패스 100" d="M3001.227-2023.421a10,10,0,0,0-10,10,10,10,0,0,0,10,10,10,10,0,0,0,10-10A10,10,0,0,0,3001.227-2023.421Zm2.072,14.227a.637.637,0,0,1,0,.9.636.636,0,0,1-.45.187.635.635,0,0,1-.45-.187l-4.677-4.677a.637.637,0,0,1,0-.9l4.677-4.677a.637.637,0,0,1,.9,0,.637.637,0,0,1,0,.9l-4.227,4.227Z" transform="translate(-2982.23 2029.42)" fill="#fff" opacity="0.6"/>
+</svg>
