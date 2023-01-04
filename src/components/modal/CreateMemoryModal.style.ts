@@ -70,6 +70,7 @@ export const LocationSelector = styled.div`
   background-color: #d1d1d1;
   border-radius: 50px;
   gap: 4px;
+  position: relative;
   ${Mixin.FlexLayout({ direction: 'row', justify: 'center', align: 'center' })};
 `;
 

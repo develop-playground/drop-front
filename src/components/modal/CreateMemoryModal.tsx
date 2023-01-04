@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import * as S from './CreateMemoryModal.style';
+import MiniMapContainer from '../map/MiniMapContainer';
+
 interface Props {
   isOpen: boolean;
 
@@ -9,6 +11,7 @@ interface Props {
 
 const CreateMemoryModal = ({ isOpen, setIsOpen }: Props) => {
   const [memoryDes, setMemoryDes] = useState<string>('');
+  const [isMapOpen, setIsMapOpen] = useState<boolean>(false);
   return (
     <Modal
       isOpen={isOpen}
@@ -40,16 +43,18 @@ const CreateMemoryModal = ({ isOpen, setIsOpen }: Props) => {
     >
       <S.Container>
         <S.Header>
-          <S.CancelText>취소</S.CancelText>
+          <S.CancelText onClick={() => setIsOpen(false)}>취소</S.CancelText>
           <S.HeaderTitle>새로운 추억</S.HeaderTitle>
           <S.EmptySpace />
         </S.Header>
         <S.Body>
           <S.BodySection className='MemoryData'>
-            <S.LocationSelector>
+            <S.LocationSelector onClick={() => setIsMapOpen(true)}>
               <S.PinMap />
               <S.LocationText>위치 정보 없음</S.LocationText>
+              {isMapOpen && <MiniMapContainer />}
             </S.LocationSelector>
+
             <S.ImgWrapper>
               <S.ImageAddCircle>
                 <S.Plus />

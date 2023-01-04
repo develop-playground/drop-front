@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createBrowserRouter, createRoutesFromElements, Outlet, redirect, Route } from 'react-router-dom';
 import { Cookies } from 'react-cookie';
 import KakaoLoginCallBackPage from './pages/commons/KakaoLoginCallbackPage';
@@ -10,19 +10,18 @@ const cookies = new Cookies(document.cookie);
 const redirectTo = (url: string) => redirect(`/${url}`);
 
 async function redirectMain() {
-  const user = cookies.get('accessToken');
+  const user: string | undefined = cookies.get('accessToken');
   if (user) {
     return redirectTo('drop');
   }
+  return null;
 }
 
 async function redirectAuth() {
   const user = cookies.get('accessToken');
-
   if (!user) {
     return redirectTo('login');
   }
-
   return { user };
 }
 
@@ -45,7 +44,6 @@ const router = createBrowserRouter(
         />
         <Route path={`sub1`} element={<div />} />
       </Route>
-      <Route path={'/oauth'} element={<KakaoLoginCallBackPage />} />
     </Route>
   )
 );
