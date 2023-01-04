@@ -1,30 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './FeedItem.style';
 import ContentSlider from './Slider/ContentSlider';
-// @ts-ignore
-import Icon_D from '../../../asset/svg/Icon_D.svg';
+import Icon_D from 'asset/svg/Icon_D.svg';
+import more from 'asset/svg/more.svg';
+import { Memory } from 'types/memory';
+import { useDropdown } from 'hooks';
 interface FeedItemProps {
-  createdDate: string;
-  address: string;
-  content: string;
-  imageUrls: string[];
+  item: Memory;
 }
 
-const FeedItem = ({ createdDate, address, content, imageUrls }: FeedItemProps) => {
+const FeedItem = ({ item }: FeedItemProps) => {
+  const { ref, isOpen, close, handleDropDownClick } = useDropdown();
+
   return (
     <S.Container>
       <S.Header>
         <S.Title>
           <S.Icon src={Icon_D} alt='icon_D'></S.Icon>
-          <S.DateText>{createdDate}</S.DateText>
-          <S.Address>{address}</S.Address>
+          <S.DateText>{item.created_date}</S.DateText>
+          <S.Address>{item.address}</S.Address>
         </S.Title>
-        <S.MoreButtonWrapper>수정</S.MoreButtonWrapper>
+        <S.MoreButtonWrapper ref={ref}>
+          <S.MoreButton onClick={() => handleDropDownClick()}>
+            <S.Icon src={more} />
+          </S.MoreButton>
+          {isOpen && (
+            <S.DropDownWrapper>
+              <S.DropDownItem
+                isBorderBottom
+                onClick={() => {
+                  alert(item.id);
+                  close();
+                }}
+              >
+                <span>수정</span>
+              </S.DropDownItem>
+              <S.DropDownItem
+                isWarningText
+                onClick={() => {
+                  alert('삭제');
+                  close();
+                }}
+              >
+                <span>삭제</span>
+              </S.DropDownItem>
+            </S.DropDownWrapper>
+          )}
+        </S.MoreButtonWrapper>
       </S.Header>
       <S.SliderWrapper>
-        <ContentSlider />
+        <ContentSlider imgList={item.image_urls} />
       </S.SliderWrapper>
-      <S.Content>{content}</S.Content>
+      <S.Content>{item.content}</S.Content>
     </S.Container>
   );
 };
