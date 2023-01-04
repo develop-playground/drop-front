@@ -4,14 +4,18 @@ import { Mixin } from '../../common';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  ${Mixin.FlexLayout({ justify: 'center' })};
+  ${Mixin.FlexLayout({ direction: 'row', justify: 'center' })};
 `;
 
+export const Wrapper = styled.div`
+  width: fit-content;
+  height: 100%;
+  ${Mixin.FlexLayout({ direction: 'row', justify: 'center', align: 'center' })};
+`;
 export const Content = styled.div`
-  width: 360px;
+  width: 328px;
   height: 100%;
   flex-shrink: 0;
-  border: 1px solid #969696;
   padding: 0 16px;
   ${Mixin.FlexLayout({ direction: 'column', justify: 'center', align: 'center' })}; ;
 `;
@@ -60,6 +64,15 @@ export const KakaoLoginButton = styled.div`
   background-color: #f9df4a;
 `;
 
+export const LoginPhoneImg = styled.img`
+  width: 500px;
+  height: 440px;
+`;
 export const KakaoLogo = styled.img`
   margin-left: 12px;
+`;
+
+export const ButtonWrapper = styled.a`
+  width: 100%;
+  height: fit-content;
 `;
