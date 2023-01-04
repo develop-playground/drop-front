@@ -4,9 +4,10 @@ import { convertHexToRGBA, Mixin } from 'common';
 export const Wrapper = styled.div`
   ${Mixin.FlexLayout({ direction: 'column' })}
   width: 240px;
-  height: 100%;
+  min-height: 100%;
   padding: 60px 0px 52px;
   background-color: ${({ theme }) => theme.color.black};
+  position: fixed;
 `;
 
 export const Logo = styled.img``;
