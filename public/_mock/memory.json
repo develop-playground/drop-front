@@ -1,0 +1,139 @@
+[
+  {
+    "id": 28,
+    "image_urls": [
+      "https://firebasestorage.googleapis.com/v0/b/drop-c2ea5.appspot.com/o/images%2F20221226_095918.jpg?alt=media&token=cb5a177c-f990-4067-8873-536a01f8a123"
+    ],
+    "content": "ff",
+    "location": {
+      "latitude": 36.33444595336914,
+      "longitude": 127.45805358886719
+    },
+    "address": "대전광역시 동구 용운동",
+    "created_date": "2022-12-26"
+  },
+  {
+    "id": 27,
+    "image_urls": [
+      "https://firebasestorage.googleapis.com/v0/b/drop-c2ea5.appspot.com/o/images%2F20221226_100015.jpg?alt=media&token=8177e0b9-41f4-401f-9410-19b86436bd11"
+    ],
+    "content": "vff",
+    "location": {
+      "latitude": 36.33444595336914,
+      "longitude": 127.45805358886719
+    },
+    "address": "대전광역시 동구 용운동",
+    "created_date": "2022-12-26"
+  },
+  {
+    "id": 26,
+    "image_urls": [
+      "https://firebasestorage.googleapis.com/v0/b/drop-c2ea5.appspot.com/o/images%2F20221226_095918.jpg?alt=media&token=792ab8aa-7869-4aa9-a4af-cab950f754c7"
+    ],
+    "content": "ssss",
+    "location": {
+      "latitude": 36.33444595336914,
+      "longitude": 127.45805358886719
+    },
+    "address": "대전광역시 동구 용운동",
+    "created_date": "2022-12-26"
+  },
+  {
+    "id": 15,
+    "image_urls": [
+      "https://firebasestorage.googleapis.com/v0/b/drop-c2ea5.appspot.com/o/images%2F20221216_180754.jpg?alt=media&token=85450551-374b-4cac-b840-e49884dd89fa",
+      "https://firebasestorage.googleapis.com/v0/b/drop-c2ea5.appspot.com/o/images%2F20221219_022958.jpg?alt=media&token=c37e0520-9555-4c8f-bd9e-2d658723ce5c"
+    ],
+    "content": "ㅎ오동ㅎ복조도곶것젇선순순순숮걱절젓덧덛섣섣숮숳눈룬륜륨륨륨륮률눗눈륨 ㄴ핮섯젖섲샂섲ㄹ ㄹ ㅈㄹ ㅈㄹ ㅈㄹ ㅈㄹ ㅈㄹ ㅈㄹ ㅈㄹ ㅈㄹ ㅈ슈ㅛ ㅈ 뇨 ㅈ ㄹㅈ ㅈㄹ ㅈㅅ ㅈㄹ ㅁㄹ ㅈㄹ ㅈㄹ ㅈㄹ ㅈㄹ ",
+    "location": {
+      "latitude": 37.50928497314453,
+      "longitude": 127.06131744384766
+    },
+    "address": "서울특별시 강남구 삼성동",
+    "created_date": "2022-12-18"
+  },
+  {
+    "id": 14,
+    "image_urls": [
+      "https://firebasestorage.googleapis.com/v0/b/drop-c2ea5.appspot.com/o/images%2F20221219_022958.jpg?alt=media&token=255ae89c-a1c2-4ed9-8d8d-734752254056"
+    ],
+    "content": "드롣도도ㅗㄷ도ㅗ도도도도도도도도돋ㅎ돟ㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㄷㅎㅎㄷㅎ",
+    "location": {
+      "latitude": 37.4861946105957,
+      "longitude": 126.95445251464844
+    },
+    "address": "서울특별시 관악구 봉천동",
+    "created_date": "2022-12-18"
+  },
+  {
+    "id": 13,
+    "image_urls": [
+      "https://firebasestorage.googleapis.com/v0/b/drop-c2ea5.appspot.com/o/images%2F20221216_180754.jpg?alt=media&token=446671a7-4b3e-4aaf-b291-1ec842fd409c",
+      "https://firebasestorage.googleapis.com/v0/b/drop-c2ea5.appspot.com/o/images%2FScreenshot_20221212-124357_One%20UI%20Home.jpg?alt=media&token=f8076515-0d99-4f4d-9766-10a5c532a64a",
+      "https://firebasestorage.googleapis.com/v0/b/drop-c2ea5.appspot.com/o/images%2FScreenshot_20221212-174532_Zigzag.jpg?alt=media&token=b1a8fab7-8ded-4494-8e0d-f79db65ce9be"
+    ],
+    "content": "ㅎㅇㅎㅇ",
+    "location": {
+      "latitude": 37.50928497314453,
+      "longitude": 127.06131744384766
+    },
+    "address": "서울특별시 강남구 삼성동",
+    "created_date": "2022-12-18"
+  },
+  {
+    "id": 9,
+    "image_urls": [
+      "path_01",
+      "path_02"
+    ],
+    "content": "많은 게시판은 모든 글을 한 번에 보여주지 않고 페이지를 나눠 쪽수별로 제공한다. 정렬 방식 또한 설정하여, 보고 싶은 정보의 우선순위를 설정할 수도 있다. 이처럼 정렬 방식과 페이지의 크기, 그리고 몇 번째 페이지인지의 요청에 따라 정보를 전달해주는 것이 Pagination 이다. 이를 개발자가 직접 구현해서 사용할 수도 있으나, JPA에서는 이를 편하게 사용할 수 있도록 Pageable 이라는 객체를 제공한다. ‘page=3&size=10&sort=id,DESC’ 형식의 QueryParameter를 추가로 요청을 보내게 되면, 쉽게 원하는 형식의 데이터들을 얻을 수 있다. 이 예시는 id의 내림차순으로 정렬한, 1쪽 10개의 글의 구성의 3번째 페이지의 정보를 요청 보내는 것이다.",
+    "location": {
+      "latitude": 36.476,
+      "longitude": 127.721
+    },
+    "address": "서울시 역삼동",
+    "created_date": "2022-11-25"
+  },
+  {
+    "id": 8,
+    "image_urls": [
+      "path_01",
+      "path_02"
+    ],
+    "content": "많은 게시판은 모든 글을 한 번에 보여주지 않고 페이지를 나눠 쪽수별로 제공한다. 정렬 방식 또한 설정하여, 보고 싶은 정보의 우선순위를 설정할 수도 있다. 이처럼 정렬 방식과 페이지의 크기, 그리고 몇 번째 페이지인지의 요청에 따라 정보를 전달해주는 것이 Pagination 이다. 이를 개발자가 직접 구현해서 사용할 수도 있으나, JPA에서는 이를 편하게 사용할 수 있도록 Pageable 이라는 객체를 제공한다. ‘page=3&size=10&sort=id,DESC’ 형식의 QueryParameter를 추가로 요청을 보내게 되면, 쉽게 원하는 형식의 데이터들을 얻을 수 있다. 이 예시는 id의 내림차순으로 정렬한, 1쪽 10개의 글의 구성의 3번째 페이지의 정보를 요청 보내는 것이다.",
+    "location": {
+      "latitude": 36.476,
+      "longitude": 127.721
+    },
+    "address": "서울시 역삼동",
+    "created_date": "2022-11-25"
+  },
+  {
+    "id": 7,
+    "image_urls": [
+      "path_01",
+      "path_02"
+    ],
+    "content": "많은 게시판은 모든 글을 한 번에 보여주지 않고 페이지를 나눠 쪽수별로 제공한다. 정렬 방식 또한 설정하여, 보고 싶은 정보의 우선순위를 설정할 수도 있다. 이처럼 정렬 방식과 페이지의 크기, 그리고 몇 번째 페이지인지의 요청에 따라 정보를 전달해주는 것이 Pagination 이다. 이를 개발자가 직접 구현해서 사용할 수도 있으나, JPA에서는 이를 편하게 사용할 수 있도록 Pageable 이라는 객체를 제공한다. ‘page=3&size=10&sort=id,DESC’ 형식의 QueryParameter를 추가로 요청을 보내게 되면, 쉽게 원하는 형식의 데이터들을 얻을 수 있다. 이 예시는 id의 내림차순으로 정렬한, 1쪽 10개의 글의 구성의 3번째 페이지의 정보를 요청 보내는 것이다.",
+    "location": {
+      "latitude": 36.476,
+      "longitude": 127.721
+    },
+    "address": "서울시 역삼동",
+    "created_date": "2022-11-25"
+  },
+  {
+    "id": 6,
+    "image_urls": [
+      "path_01",
+      "path_02"
+    ],
+    "content": "많은 게시판은 모든 글을 한 번에 보여주지 않고 페이지를 나눠 쪽수별로 제공한다. 정렬 방식 또한 설정하여, 보고 싶은 정보의 우선순위를 설정할 수도 있다. 이처럼 정렬 방식과 페이지의 크기, 그리고 몇 번째 페이지인지의 요청에 따라 정보를 전달해주는 것이 Pagination 이다. 이를 개발자가 직접 구현해서 사용할 수도 있으나, JPA에서는 이를 편하게 사용할 수 있도록 Pageable 이라는 객체를 제공한다. ‘page=3&size=10&sort=id,DESC’ 형식의 QueryParameter를 추가로 요청을 보내게 되면, 쉽게 원하는 형식의 데이터들을 얻을 수 있다. 이 예시는 id의 내림차순으로 정렬한, 1쪽 10개의 글의 구성의 3번째 페이지의 정보를 요청 보내는 것이다.",
+    "location": {
+      "latitude": 36.476,
+      "longitude": 127.721
+    },
+    "address": "서울시 역삼동",
+    "created_date": "2022-11-25"
+  }
+]
