@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Cookies } from 'react-cookie';
 import { AuthAtom } from '../../store/authAtom';
 import { useSetRecoilState } from 'recoil';
@@ -35,8 +35,13 @@ const KakaoLoginCallbackPage = () => {
   //     // setCookiesForAuth(r.accessToken, r.refresh_token);
   //   })
   //   .catch((e) => alert(e.name));
-  setCookiesForAuth(superAccessToken, superRefreshToken);
-  navigate('/');
+  useEffect(() => {
+    setTimeout(() => {
+      setCookiesForAuth(superAccessToken, superRefreshToken);
+      navigate('/');
+    }, 3000);
+  }, []);
+
   return <div>카카오로 로그인 중...</div>;
 };
 

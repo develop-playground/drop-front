@@ -1,8 +1,33 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Clustering from '../../utils/MarkerClustering';
 import { useGetMemory } from '../../network/query/memory';
 import { Memory } from '../../types/memory';
+import styled from 'styled-components';
+import { Mixin } from '../../common';
+
+import { ReactComponent as PlusIcon } from '../../asset/svg/i_plus.svg';
+import CreateMemoryModal from '../../components/modal/CreateMemoryModal';
+
+const AddButton = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.color.lime};
+  box-shadow: 1px 1px 2px #00000029;
+  position: absolute;
+  top: 85%;
+  right: 3%;
+  ${Mixin.FlexLayout({ direction: 'row', justify: 'center', align: 'center' })};
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: black;
+  }
+`;
 const Map = () => {
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
   const { data } = useGetMemory();
   useEffect(() => {
     const { naver } = window;
@@ -19,7 +44,7 @@ const Map = () => {
           position: new naver.maps.LatLng(item.location.latitude, item.location.longitude),
           map,
           icon: {
-            content: `<div style="width:50px;height:50px;border-radius: 2px;border: 1px solid black"> <img style="width:50px;height:50px" src=${item.image_urls[0]}/></div>`,
+            content: `<div style="width:50px;height:50px;border-radius: 2px;border: 1px solid black"> <img style="width:50px;height:50px" src="${item.image_urls[0]}/"></div>`,
           },
         });
         return marker;
@@ -49,9 +74,17 @@ const Map = () => {
     });
   }, [data]);
   return (
-    <div>
-      <div id='map' style={{ width: '100%', height: '100vh' }}></div>
-    </div>
+    <>
+      <div>
+        <div id='map' style={{ width: '100%', height: '100vh' }}></div>
+        <AddButton onClick={() => setIsCreateModalOpen(true)}>
+          <PlusIcon />
+        </AddButton>
+      </div>
+      {isCreateModalOpen && (
+        <CreateMemoryModal isOpen={isCreateModalOpen} setIsOpen={setIsCreateModalOpen} refresh={() => {}} />
+      )}
+    </>
   );
 };
 export default Map;
