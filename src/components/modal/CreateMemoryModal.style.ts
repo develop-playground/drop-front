@@ -71,6 +71,7 @@ export const LocationSelector = styled.div`
   border-radius: 50px;
   gap: 4px;
   position: relative;
+  cursor: pointer;
   ${Mixin.FlexLayout({ direction: 'row', justify: 'center', align: 'center' })};
 `;
 
@@ -83,7 +84,7 @@ export const LocationText = styled.p`
   font-size: 14px;
 `;
 
-export const ImgWrapper = styled.div`
+export const ImgWrapper = styled.label`
   width: 328px;
   height: 100%;
   background-color: #d1d1d1;
@@ -119,15 +120,15 @@ export const DescriptionArea = styled.textarea`
   }
 `;
 
-export const DropButton = styled.div`
+export const DropButton = styled.div<{ isActive: boolean }>`
   width: 100%;
   height: 44px;
   ${Mixin.FlexLayout({ direction: 'row', justify: 'center', align: 'center' })};
   border-radius: 5px;
-  background-color: #d1d1d1;
-  cursor: pointer;
+  background-color: ${(props) => (props.isActive ? '#C8D94D' : '#d1d1d1')};
+  color: ${(props) => (props.isActive ? 'black' : '#ffffff')};
+  cursor: ${(props) => props.isActive && 'pointer'};
   margin-top: 20px;
-  color: #ffffff;
   font-size: 18px;
   font-weight: 500;
 `;

@@ -38,7 +38,7 @@ const router = createBrowserRouter(
           path={`drop`}
           element={
             <div>
-              <CreateMemoryModal isOpen={true} setIsOpen={() => {}} />
+              <CreateMemoryModal isOpen={true} setIsOpen={() => {}} refresh={() => {}} />
             </div>
           }
         />
