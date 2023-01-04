@@ -23,7 +23,11 @@ const useDropdown = () => {
     };
   }, [close]);
 
-  return { ref, isOpen, open, close };
+  const handleDropDownClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return { ref, isOpen, open, close, handleDropDownClick };
 };
 
 export default useDropdown;
