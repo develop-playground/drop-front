@@ -8,6 +8,7 @@ import Map from './pages/map/Map';
 import SideNavigationBar from './compositions/SNB/SideNavigationBar';
 import { Mixin } from './common';
 import styled from 'styled-components';
+import Setting from './pages/setting/Setting';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -67,6 +68,7 @@ const router = createBrowserRouter(
 
         <Route path={`memory`} element={<Feed />} />
         <Route path={`map`} element={<Map />} />
+        <Route path={'setting'} element={<Setting />} />
       </Route>
     </Route>
   )

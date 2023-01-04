@@ -36,7 +36,6 @@ export const Title = styled.span`
 
 export const Border = styled.div`
   width: 100%;
-  border-bottom: 1px solid white;
 `;
 
 export const InfoBox = styled.div`

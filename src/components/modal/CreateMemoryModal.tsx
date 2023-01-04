@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Modal from 'react-modal';
 import * as S from './CreateMemoryModal.style';
 import MiniMapContainer from '../map/MiniMapContainer';
 import { usePostApiMemory } from '../../network/query/MemoryQuery';
 import useOnOutsideClick from '../../utils/useOnOutSideClick';
 import { FileDrop } from 'react-file-drop';
+
+import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+import { app } from '../../asset/firebase';
 
 interface Props {
   isOpen: boolean;
@@ -19,6 +22,8 @@ export interface LocationSpec {
   longitude: number;
 }
 
+const storage = getStorage(app);
+
 const CreateMemoryModal = ({ isOpen, setIsOpen, refresh }: Props) => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [memoryContent, setMemoryContent] = useState<string>('');
@@ -29,17 +34,6 @@ const CreateMemoryModal = ({ isOpen, setIsOpen, refresh }: Props) => {
   });
 
   const mapWrapperRef = useRef<HTMLDivElement>(null);
-
-  const [nowLocation, setNowLocation] = useState<LocationSpec>({
-    latitude: 0,
-    longitude: 0,
-  });
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setNowLocation({ latitude: position.coords.longitude, longitude: position.coords.longitude });
-    });
-  }, []);
 
   useOnOutsideClick(
     () => {
@@ -73,7 +67,21 @@ const CreateMemoryModal = ({ isOpen, setIsOpen, refresh }: Props) => {
       ? locationData.address !== '' && locationData.location !== undefined
       : false;
 
-  const handleFileUpload = (fileList: FileList | null) => {};
+  const handleFileUpload = (fileList: FileList | null) => {
+    if (fileList === null) {
+      return;
+    }
+    for (let i = 0; i < fileList.length; i++) {
+      const imageRef = ref(storage, `images/${fileList[i].name}`);
+      uploadBytes(imageRef, fileList[i]).then((snapshot) => {
+        // 업로드 되자마자 뜨게 만들기
+        getDownloadURL(snapshot.ref).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
+        });
+        //
+      });
+    }
+  };
   return (
     <Modal
       isOpen={isOpen}
@@ -112,12 +120,20 @@ const CreateMemoryModal = ({ isOpen, setIsOpen, refresh }: Props) => {
         <S.Body>
           <S.BodySection className='MemoryData'>
             <S.LocationSelector onClick={() => setIsMapOpen(true)}>
-              <S.PinMap />
-              <S.LocationText>위치 정보 없음</S.LocationText>
+              {locationData!.location.longitude === 0 ? (
+                <>
+                  <S.PinMap />
+                  <S.LocationText>위치 정보 없음</S.LocationText>
+                </>
+              ) : (
+                <>
+                  <S.PinMap />
+                  <S.LocationText>위치는 어디야</S.LocationText>
+                </>
+              )}
             </S.LocationSelector>
             {isMapOpen && (
               <MiniMapContainer
-                nowLocation={nowLocation}
                 onCloseMap={() => setIsMapOpen(false)}
                 setLocationData={setLocationData}
                 ref={mapWrapperRef}

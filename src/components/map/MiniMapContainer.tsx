@@ -22,47 +22,46 @@ declare global {
 }
 
 interface Props {
-  nowLocation: LocationSpec;
-
   onCloseMap(): void;
 
   setLocationData: Dispatch<SetStateAction<{ address: string; location: LocationSpec }>>;
 }
 
-const MiniMapContainer = forwardRef(
-  ({ nowLocation, setLocationData, onCloseMap }: Props, ref: ForwardedRef<HTMLDivElement>) => {
-    const mapRef = useRef<HTMLDivElement>(null);
+const MiniMapContainer = forwardRef(({ setLocationData, onCloseMap }: Props, ref: ForwardedRef<HTMLDivElement>) => {
+  const mapRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-      const { naver } = window;
-      const nowPosition = new naver.maps.LatLng(nowLocation.latitude, nowLocation.longitude);
+  useEffect(() => {
+    const { naver } = window;
+    if (mapRef.current == null) return;
+    navigator.geolocation.getCurrentPosition((nowPosition) => {
+      const position = new naver.maps.LatLng(nowPosition.coords.latitude, nowPosition.coords.longitude);
 
-      console.log(nowPosition);
-      if (mapRef.current == null) return;
       const map = new naver.maps.Map(mapRef.current, {
-        center: nowPosition,
-        zoom: 17,
+        center: position,
+        zoom: 16,
       });
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const marker = new naver.maps.Marker({
-        position: nowPosition,
-        map,
+        position: position,
+        map: map,
       });
 
-      naver.maps.Event.addListener(mapRef.current, 'click', function (e: any) {
+      naver.maps.Event.addListener(map, 'click', function (e: any) {
         marker.setPosition(e.coord);
-        onCloseMap();
-        setLocationData({ address: '', location: { latitude: e.coord.latitudem, longitude: e.coord.longitude } });
-      });
-    }, [nowLocation]);
 
-    return (
-      <MapWrapper ref={ref}>
-        <Map ref={mapRef} />
-      </MapWrapper>
-    );
-  }
-);
+        setLocationData({
+          address: '',
+          location: { latitude: e.coord.latitudem, longitude: e.coord.longitude },
+        });
+      });
+    });
+  }, []);
+
+  return (
+    <MapWrapper ref={ref}>
+      <Map ref={mapRef} />
+    </MapWrapper>
+  );
+});
 
 export default MiniMapContainer;
