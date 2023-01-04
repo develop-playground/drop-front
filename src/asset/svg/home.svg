@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="20" height="20" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="사각형_68" data-name="사각형 68" width="20" height="20" transform="translate(0 0)" fill="#969696"/>
+    </clipPath>
+  </defs>
+  <g id="홈_아이콘_web" data-name="홈 아이콘_web" clip-path="url(#clip-path)" style="mix-blend-mode: normal;isolation: isolate">
+    <g id="홈_아이콘" data-name="홈 아이콘" clip-path="url(#clip-path-2)">
+      <path id="패스_37" data-name="패스 37" d="M19.779,10.6a.785.785,0,0,1-1.09.008l-1.017-.978v9.892a.481.481,0,0,1-.487.475H12.408l.048-7.759-4.86.047L7.644,20H2.755a.481.481,0,0,1-.487-.475V9.689l-.957.921A.785.785,0,0,1,.221,10.6a.74.74,0,0,1,.01-1.064l2.037-1.96V7.539L10.11,0l7.042,7.022,2.617,2.516a.74.74,0,0,1,.01,1.064" transform="translate(0 0)" fill="#969696"/>
+    </g>
+  </g>
+</svg>
