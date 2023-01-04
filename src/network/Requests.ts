@@ -16,9 +16,9 @@ const requestForEntity = async <T>(
   method: RequestMethod,
   retry: boolean = false
 ): Promise<T> => {
-  const Authorization = cookies.get('Authorization');
+  const Authorization = cookies.get('accessToken');
   const headers = {
-    Authorization,
+    Authorization: `Bearer ${Authorization}`,
   };
   try {
     const response = await axios(uri, {
