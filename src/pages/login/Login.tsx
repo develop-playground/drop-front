@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import * as S from './Login.style';
 import DropLogo from '../../asset/svg/i_logo_b.svg';
 import KakaoLogo from '../../asset/svg/i_kakao_logo_brown.svg';
@@ -6,6 +6,9 @@ import KakaoLogin from 'react-kakao-login';
 import LoginPhone from '../../asset/png/login/login_phone.png';
 
 const Login = () => {
+  useEffect(() => {
+
+  })
   return (
     <S.Container>
       <S.Wrapper>
