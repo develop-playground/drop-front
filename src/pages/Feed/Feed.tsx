@@ -1,15 +1,15 @@
 import React from 'react';
 import FeedItem from './Compositions/FeedItem';
 import * as S from './Feed.style';
-import { useGetMemory } from 'network/query/memory';
+import { useInfiniteGetMemory } from 'network/query/memory';
 import { Memory } from 'types/Memory';
 import noMapPin from 'asset/svg/no_map_pin.svg';
 import FeedItemSkeleton from 'components/SkeletonScreens/FeedItemSkeleton';
 
 function Feed() {
-  const { data, isLoading } = useGetMemory();
+  const { status, data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteGetMemory();
 
-  if (isLoading) {
+  if (status === 'loading') {
     return (
       <S.Wrapper>
         <S.FeedItemWrapper>
@@ -20,7 +20,7 @@ function Feed() {
     );
   }
 
-  if (data?.length === 0) {
+  if (data?.pages.length === 0) {
     return (
       <S.EmptyWrapper>
         <S.EmptyBox>
@@ -31,13 +31,24 @@ function Feed() {
     );
   }
   return (
-    <S.Wrapper>
-      <S.FeedItemWrapper>
-        {data?.map((item: Memory) => (
-          <FeedItem key={item.id} item={item} />
-        ))}
-      </S.FeedItemWrapper>
-    </S.Wrapper>
+    <>
+      <S.Wrapper>
+        <S.FeedItemWrapper>
+          {data?.pages.map((group) => group.map((item: Memory) => <FeedItem key={item.id} item={item} />))}
+        </S.FeedItemWrapper>
+      </S.Wrapper>
+      <div>
+        <button
+          onClick={async () => {
+            await fetchNextPage();
+          }}
+          disabled={!hasNextPage || isFetchingNextPage}
+        >
+          {isFetchingNextPage ? 'Loading more...' : hasNextPage ? 'Load More' : 'Nothing more to load'}
+        </button>
+      </div>
+      <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
+    </>
   );
 }
 
