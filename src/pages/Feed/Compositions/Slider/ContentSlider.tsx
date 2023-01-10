@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import prevArrow from 'asset/svg/prevArrow.svg';
-import { imageUrlListType } from '../../../../types/memory';
+import { imageUrlListType } from '../../../../types/Memory';
 function SampleArrow(props: { className?: any; style?: any; onClick?: any }) {
   const { className, style, onClick } = props;
   return (

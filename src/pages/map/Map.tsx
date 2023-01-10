@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as Clustering from '../../utils/MarkerClustering';
 import { useGetMemory } from '../../network/query/memory';
-import { Memory } from '../../types/memory';
+import { Memory } from '../../types/Memory';
 import styled from 'styled-components';
 import { Mixin } from '../../common';
 
