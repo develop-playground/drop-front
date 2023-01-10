@@ -3,7 +3,7 @@ import * as S from './FeedItem.style';
 import ContentSlider from './Slider/ContentSlider';
 import Icon_D from 'asset/svg/Icon_D.svg';
 import more from 'asset/svg/more.svg';
-import { Memory } from 'types/memory';
+import { Memory } from 'types/Memory';
 import { useDropdown } from 'hooks';
 interface FeedItemProps {
   item: Memory;
