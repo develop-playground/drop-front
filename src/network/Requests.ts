@@ -26,7 +26,7 @@ const requestForEntity = async <T>(
       method,
       params,
       data,
-      baseURL: `http://3.34.194.171`,
+      // baseURL: 'http://3.34.194.171:80',
     });
 
     return response.data;
