@@ -9,12 +9,12 @@ import EditMemoryModal from "../../../components/modal/EditMemoryModal";
 
 interface FeedItemProps {
   item: Memory;
+  onDeleteDialogueOpen: () => void;
 }
 
-const FeedItem = ({item}: FeedItemProps) => {
-  const {ref, isOpen, close, handleDropDownClick} = useDropdown();
+const FeedItem = ({ item, onDeleteDialogueOpen }: FeedItemProps) => {
+  const { ref, isOpen, close, handleDropDownClick } = useDropdown();
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   return (
     <>
       <S.Container>
@@ -42,8 +42,8 @@ const FeedItem = ({item}: FeedItemProps) => {
                 <S.DropDownItem
                   isWarningText
                   onClick={() => {
-                    alert('삭제');
-                    close();
+                 close();
+                  onDeleteDialogueOpen();
                   }}
                 >
                   <span>삭제</span>

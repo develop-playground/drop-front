@@ -38,7 +38,7 @@ const Map = () => {
       zoom: 10,
     });
 
-    if (!data) return;
+    if (!data?.length) return;
     const markers = data?.map((item: Memory) => {
       if (item.location.latitude && item.location.longitude && item.image_urls) {
         const marker = new naver.maps.Marker({
