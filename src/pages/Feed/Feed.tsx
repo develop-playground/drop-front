@@ -26,7 +26,7 @@ function Feed() {
 
   //DeleteDialgoue
 
-  const [deleteModalOpen, setDeleteModalOpen] = useState(true);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedItem, setSeletctedItem] = useState<Memory>();
   const handleClose = () => {
     setDeleteModalOpen(false);
