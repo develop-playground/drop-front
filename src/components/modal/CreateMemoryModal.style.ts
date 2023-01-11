@@ -169,6 +169,7 @@ export const ContentArea = styled.div`
   height: 340px;
   padding-left: 20px;
   padding-right: 20px;
+  margin-bottom: 30px;
   ${Mixin.FlexLayout({direction: "row"})};
   gap: 20px;
 

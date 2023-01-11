@@ -1,7 +1,10 @@
 import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
 import { deleteForEntity, getForEntity, putForEntity } from '../Requests';
 import { Memory } from 'types/Memory';
+import {Cookies} from "react-cookie";
+
 const memoryKey = 'memory';
+const cookies = new Cookies(document.cookie);
 
 export const useGetMemory = () =>
   useQuery({ queryKey: [memoryKey], queryFn: (): Promise<Memory[]> => getForEntity('/api/memory', {}) });
@@ -29,3 +32,13 @@ export const useDeleteMemory = (successCallBack: () => void) =>
       }),
     { onSuccess: successCallBack }
   );
+export const postEditMemory = (id: number, conten12t: string, then12: () => void) => {
+  const Authorization = cookies.get('accessToken');
+
+  fetch(`/api/memory/${id}`, {
+    method: 'PATCH',
+    headers: {Authorization: `Bearer ${Authorization}`},
+    body: JSON.stringify({ content: conten12t})
+
+  }).then((r) => then12)
+}

@@ -4,7 +4,7 @@ import * as S from "./CreateMemoryModal.style";
 import {TextDate} from "./CreateMemoryModal.style";
 import Icon_D from "../../asset/svg/Icon_D.svg";
 import ContentSlider from "../../pages/Feed/Compositions/Slider/ContentSlider";
-import {useEditMemory} from "../../network/query/memory";
+import {postEditMemory} from "../../network/query/memory";
 
 interface Props {
   isOpen: boolean;
@@ -21,13 +21,7 @@ interface Props {
 const EditMemoryModal = ({isOpen, setIsOpen, date, imageUrls, address, memoryContent, id}: Props) => {
 
   const [content, setContent] = useState(memoryContent)
-  const postQwe = useEditMemory(id, content, () => {
-    alert("수정이 완료됐습니다!")
-    setIsOpen(false)
-  })
-  const onClickEditMemoryButton = () => {
-    postQwe.mutate()
-  }
+
   return (
     <Modal
       isOpen={isOpen}
@@ -73,14 +67,18 @@ const EditMemoryModal = ({isOpen, setIsOpen, date, imageUrls, address, memoryCon
           </S.ContentWrraper>
           <S.DataArea>
             <S.DateArea>
-              <S.PinMap/> <S.DateText>{address}</S.DateText>
+              <S.PinMap/>
+              <S.DateText>{address}</S.DateText>
             </S.DateArea>
             <S.DescriptionArea
               placeholder=' 내용을 입력하세요.'
               value={content}
               onChange={(e) => setContent(e.currentTarget.value)}
             />
-            <S.DropButton isActive={true} onClick={() => onClickEditMemoryButton()}>
+            <S.DropButton isActive={true} onClick={() => postEditMemory(id, content, () => {
+              alert("수정이 완료됐습니다!")
+              setIsOpen(false)
+            })}>
               수정하기
             </S.DropButton>
           </S.DataArea>
