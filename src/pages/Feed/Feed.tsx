@@ -7,6 +7,7 @@ import noMapPin from 'asset/svg/no_map_pin.svg';
 import FeedItemSkeleton from 'components/SkeletonScreens/FeedItemSkeleton';
 import { useIntersection } from '../../hooks';
 import DeleteDialogue from '../../compositions/RemoveDialogue/DeleteDialogue';
+import dropQueryClient from "../../network/DropQueryClient";
 
 function Feed() {
   const { status, data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteGetMemory();
@@ -28,6 +29,8 @@ function Feed() {
 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedItem, setSeletctedItem] = useState<Memory>();
+
+  const quertclient = dropQueryClient
   const handleClose = () => {
     setDeleteModalOpen(false);
   };
@@ -35,6 +38,7 @@ function Feed() {
   const deleteMemory = useDeleteMemory(() => {
     setDeleteModalOpen(false);
     alert('삭제 완료');
+    quertclient.invalidateQueries('memory')
   });
   const handleDeleteDialogueOpen = (item: Memory) => {
     setDeleteModalOpen(true);

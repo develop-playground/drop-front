@@ -9,6 +9,7 @@ import {getDownloadURL, getStorage, ref, uploadBytes} from 'firebase/storage';
 import {app} from '../../asset/firebase';
 import {FileDrop} from 'react-file-drop';
 import ContentSlider from "../../pages/Feed/Compositions/Slider/ContentSlider";
+import dropQueryClient from "../../network/DropQueryClient";
 
 interface Props {
   isOpen: boolean;
@@ -35,7 +36,7 @@ const CreateMemoryModal = ({isOpen, setIsOpen, refresh}: Props) => {
 
 
   const mapWrapperRef = useRef<HTMLDivElement>(null);
-
+  const quertclient = dropQueryClient
   useOnOutsideClick(
     () => {
       if (isMapOpen) {
@@ -48,6 +49,7 @@ const CreateMemoryModal = ({isOpen, setIsOpen, refresh}: Props) => {
   const postMemory = usePostApiMemory(() => {
     alert('추억 생성 완료');
     setIsOpen(false);
+    quertclient.invalidateQueries('memory')
     refresh();
   });
 
@@ -126,7 +128,7 @@ const CreateMemoryModal = ({isOpen, setIsOpen, refresh}: Props) => {
               ) : (
                 <>
                   <S.PinMap style={{fill:"#000000"}}/>
-                  <S.LocationText style={{color:"#000000"}}>위치는 {nowAddress}</S.LocationText>
+                  <S.LocationText style={{color:"#000000"}}>{nowAddress}</S.LocationText>
                 </>
               )}
             </S.LocationSelector>

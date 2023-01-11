@@ -1,19 +1,19 @@
-import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
-import { deleteForEntity, getForEntity, putForEntity } from '../Requests';
-import { Memory } from 'types/Memory';
+import {useInfiniteQuery, useMutation, useQuery} from 'react-query';
+import {deleteForEntity, getForEntity, putForEntity} from '../Requests';
+import {Memory} from 'types/Memory';
 import {Cookies} from "react-cookie";
 
 const memoryKey = 'memory';
 const cookies = new Cookies(document.cookie);
 
 export const useGetMemory = () =>
-  useQuery({ queryKey: [memoryKey], queryFn: (): Promise<Memory[]> => getForEntity('/api/memory', {}) });
+  useQuery({queryKey: [memoryKey], queryFn: (): Promise<Memory[]> => getForEntity('/api/memory', {})});
 
 export const useInfiniteGetMemory = () =>
   useInfiniteQuery({
     queryKey: [memoryKey],
     queryFn: (context): Promise<Memory[]> => {
-      return getForEntity('/api/memory', { page: context.pageParam, size: 5 });
+      return getForEntity('/api/memory', {page: context.pageParam, size: 5});
     },
     keepPreviousData: true,
     getNextPageParam: (lastPage, allPages) => {
@@ -22,7 +22,7 @@ export const useInfiniteGetMemory = () =>
   });
 
 export const useEditMemory = (id: number, content: string, then: () => void) =>
-  useMutation(() => putForEntity(`/api/memory/{id}`, { content }), { onSuccess: then });
+  useMutation(() => putForEntity(`/api/memory/{id}`, {content}), {onSuccess: then});
 
 export const useDeleteMemory = (successCallBack: () => void) =>
   useMutation(
@@ -30,15 +30,18 @@ export const useDeleteMemory = (successCallBack: () => void) =>
       deleteForEntity(`/api/memory/${String(id)}`, {
         // id: String(id),
       }),
-    { onSuccess: successCallBack }
+    {onSuccess: successCallBack}
   );
 export const postEditMemory = (id: number, conten12t: string, then12: () => void) => {
   const Authorization = cookies.get('accessToken');
 
   fetch(`/api/memory/${id}`, {
     method: 'PATCH',
-    headers: {Authorization: `Bearer ${Authorization}`},
-    body: JSON.stringify({ content: conten12t})
+    headers: {
+      Authorization: `Bearer ${Authorization}`,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({content: conten12t})
 
-  }).then((r) => then12)
+  }).then((r) => then12())
 }

@@ -5,6 +5,7 @@ import {TextDate} from "./CreateMemoryModal.style";
 import Icon_D from "../../asset/svg/Icon_D.svg";
 import ContentSlider from "../../pages/Feed/Compositions/Slider/ContentSlider";
 import {postEditMemory} from "../../network/query/memory";
+import dropQueryClient from "../../network/DropQueryClient";
 
 interface Props {
   isOpen: boolean;
@@ -21,7 +22,7 @@ interface Props {
 const EditMemoryModal = ({isOpen, setIsOpen, date, imageUrls, address, memoryContent, id}: Props) => {
 
   const [content, setContent] = useState(memoryContent)
-
+  const quertclient = dropQueryClient
   return (
     <Modal
       isOpen={isOpen}
@@ -78,6 +79,7 @@ const EditMemoryModal = ({isOpen, setIsOpen, date, imageUrls, address, memoryCon
             <S.DropButton isActive={true} onClick={() => postEditMemory(id, content, () => {
               alert("수정이 완료됐습니다!")
               setIsOpen(false)
+              quertclient.invalidateQueries('memory');
             })}>
               수정하기
             </S.DropButton>
