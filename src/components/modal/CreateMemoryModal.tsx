@@ -33,7 +33,6 @@ const CreateMemoryModal = ({isOpen, setIsOpen, refresh}: Props) => {
   const [nowAddress, setNowAddress] = useState<string>('')
 
 
-  console.log(imageUrls)
 
   const mapWrapperRef = useRef<HTMLDivElement>(null);
 

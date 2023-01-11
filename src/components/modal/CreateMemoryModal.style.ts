@@ -149,3 +149,57 @@ export const DropButton = styled.div<{ isActive: boolean }>`
   font-size: 18px;
   font-weight: 500;
 `;
+
+export const HeaderDivierWrppaer = styled.div`
+  width: 100%;
+  height: fit-content;
+  ${Mixin.FlexLayout({direction:"row"})};
+  gap: 4px;
+  margin-top: 20px;
+`;
+export const Icon = styled.img``;
+
+export const TextDate = styled.p`
+  font-weight: 700;
+  font-size: 22px;
+  color: #000000;
+`;
+export const ContentArea = styled.div`
+  width: 734px;
+  height: 340px;
+  padding-left: 20px;
+  padding-right: 20px;
+  ${Mixin.FlexLayout({direction: "row"})};
+  gap: 20px;
+
+ 
+`;
+
+export const ContentWrraper = styled.div`
+  div:first-child {
+    width: 340px;
+    height: 340px;
+  }
+
+  img {
+    width: 100%;
+    height: 340px;
+  }
+`;
+export const DataArea = styled.div`
+  width: 328px;
+  height: 340px;
+  ${Mixin.FlexLayout({direction: "column"})};
+  gap: 12px;
+`;
+export const DateArea = styled.div`
+  width: 100%;
+  height: fit-content;
+  ${Mixin.FlexLayout({direction:"row"})};
+  gap: 4px;
+`;
+
+export const DateText=  styled.div`
+  font-size: 12px;
+  color: #000000;
+`;
