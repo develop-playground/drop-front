@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
-import { deleteForEntity, getForEntity } from '../Requests';
+import { deleteForEntity, getForEntity, putForEntity } from '../Requests';
 import { Memory } from 'types/Memory';
 const memoryKey = 'memory';
 
@@ -18,8 +18,9 @@ export const useInfiniteGetMemory = () =>
     },
   });
 
-export const useEditMemory = (id: number, content: string, then: () => void) => useMutation(() => putForEntity(`/api/memory/{id}`, {content}),{onSuccess:then})
-export const useEditMemory = (id: number, content: string, then: () => void) => useMutation(() => putForEntity(`/api/memory/{id}`, {content}),{onSuccess:then})
+export const useEditMemory = (id: number, content: string, then: () => void) =>
+  useMutation(() => putForEntity(`/api/memory/{id}`, { content }), { onSuccess: then });
+
 export const useDeleteMemory = (successCallBack: () => void) =>
   useMutation(
     (id: number): Promise<Memory[]> =>
