@@ -52,7 +52,7 @@ const MiniMapContainer = forwardRef(({
 
       naver.maps.Event.addListener(map, 'click', function (e: any) {
         marker.setPosition(e.coord);
-        setLocationData({latitude: e.coord.x, longitude: e.coord.y});
+        setLocationData({longitude: e.coord.x, latitude: e.coord.y});
         window.naver.maps.Service.reverseGeocode(
           {
             coords: e.coord,

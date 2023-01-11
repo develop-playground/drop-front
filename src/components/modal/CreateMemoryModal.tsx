@@ -126,8 +126,8 @@ const CreateMemoryModal = ({isOpen, setIsOpen, refresh}: Props) => {
                 </>
               ) : (
                 <>
-                  <S.PinMap/>
-                  <S.LocationText>위치는 {nowAddress}</S.LocationText>
+                  <S.PinMap style={{fill:"#000000"}}/>
+                  <S.LocationText style={{color:"#000000"}}>위치는 {nowAddress}</S.LocationText>
                 </>
               )}
             </S.LocationSelector>

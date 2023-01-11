@@ -92,10 +92,17 @@ export const ImgWrapper = styled.label`
   background-color: #d1d1d1;
   border-radius: 10px;
   cursor: pointer;
+  position: revert;
+  
   ${Mixin.FlexLayout({ direction: 'row', justify: 'center', align: 'center' })};
   
+  .file-drop {
+    width: 328px;
+    position: absolute;
+  }
   div:first-child{
     width: 100%;
+    height: 328px;
   }
   img {
     width: 100%;
