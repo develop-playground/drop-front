@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   ${Mixin.FlexLayout({ justify: 'center' })}
   height: 100%;
   min-width: 440px;
-  padding: 40px;
+  padding: 40px 40px 150px;
   background-color: ${({ theme }) => theme.color.smokeWhite};
 `;
 export const FeedItemWrapper = styled.div`

@@ -1,3 +1,4 @@
 import useDropdown from './useDropdown';
+import useIntersection from './useIntersection';
 
-export { useDropdown };
+export { useDropdown, useIntersection };

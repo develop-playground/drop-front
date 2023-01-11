@@ -1,20 +1,21 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import * as S from './FeedItem.style';
 import ContentSlider from './Slider/ContentSlider';
 import Icon_D from 'asset/svg/Icon_D.svg';
 import more from 'asset/svg/more.svg';
-import {Memory} from 'types/Memory';
-import {useDropdown} from 'hooks';
-import EditMemoryModal from "../../../components/modal/EditMemoryModal";
+import { Memory } from 'types/Memory';
+import { useDropdown } from 'hooks';
+import EditMemoryModal from '../../../components/modal/EditMemoryModal';
 
 interface FeedItemProps {
   item: Memory;
+  onDeleteDialogueOpen: () => void;
 }
 
-const FeedItem = ({item}: FeedItemProps) => {
-  const {ref, isOpen, close, handleDropDownClick} = useDropdown();
+const FeedItem = ({ item, onDeleteDialogueOpen }: FeedItemProps) => {
+  const { ref, isOpen, close, handleDropDownClick } = useDropdown();
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   return (
     <>
       <S.Container>
@@ -26,14 +27,14 @@ const FeedItem = ({item}: FeedItemProps) => {
           </S.Title>
           <S.MoreButtonWrapper ref={ref}>
             <S.MoreButton onClick={() => handleDropDownClick()}>
-              <S.Icon src={more}/>
+              <S.Icon src={more} />
             </S.MoreButton>
             {isOpen && (
               <S.DropDownWrapper>
                 <S.DropDownItem
                   isBorderBottom
                   onClick={() => {
-                    setIsModalOpen(true)
+                    setIsModalOpen(true);
                     close();
                   }}
                 >
@@ -42,8 +43,8 @@ const FeedItem = ({item}: FeedItemProps) => {
                 <S.DropDownItem
                   isWarningText
                   onClick={() => {
-                    alert('삭제');
                     close();
+                    onDeleteDialogueOpen();
                   }}
                 >
                   <span>삭제</span>
@@ -53,12 +54,19 @@ const FeedItem = ({item}: FeedItemProps) => {
           </S.MoreButtonWrapper>
         </S.Header>
         <S.SliderWrapper>
-          <ContentSlider imgList={item.image_urls}/>
+          <ContentSlider imgList={item.image_urls} />
         </S.SliderWrapper>
         <S.Content>{item.content}</S.Content>
       </S.Container>
-      <EditMemoryModal id={item.id} isOpen={isModalOpen} date={item.created_date} imageUrls={item.image_urls} address={item.address}
-                       memoryContent={item.content} setIsOpen={setIsModalOpen}/>
+      <EditMemoryModal
+        id={item.id}
+        isOpen={isModalOpen}
+        date={item.created_date}
+        imageUrls={item.image_urls}
+        address={item.address}
+        memoryContent={item.content}
+        setIsOpen={setIsModalOpen}
+      />
     </>
   );
 };
