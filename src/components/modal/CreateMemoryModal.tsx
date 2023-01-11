@@ -1,13 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, {useRef, useState} from 'react';
 import Modal from 'react-modal';
 import * as S from './CreateMemoryModal.style';
 import MiniMapContainer from '../map/MiniMapContainer';
-import { usePostApiMemory } from '../../network/query/MemoryQuery';
+import {usePostApiMemory} from '../../network/query/MemoryQuery';
 import useOnOutsideClick from '../../utils/useOnOutSideClick';
-import { FileDrop } from 'react-file-drop';
 
-import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
-import { app } from '../../asset/firebase';
+import {getDownloadURL, getStorage, ref, uploadBytes} from 'firebase/storage';
+import {app} from '../../asset/firebase';
+import {FileDrop} from 'react-file-drop';
+import ContentSlider from "../../pages/Feed/Compositions/Slider/ContentSlider";
 
 interface Props {
   isOpen: boolean;
@@ -24,14 +25,15 @@ export interface LocationSpec {
 
 const storage = getStorage(app);
 
-const CreateMemoryModal = ({ isOpen, setIsOpen, refresh }: Props) => {
+const CreateMemoryModal = ({isOpen, setIsOpen, refresh}: Props) => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [memoryContent, setMemoryContent] = useState<string>('');
   const [isMapOpen, setIsMapOpen] = useState<boolean>(false);
-  const [locationData, setLocationData] = useState<{ address: string; location: LocationSpec }>({
-    address: '',
-    location: { latitude: 0, longitude: 0 },
-  });
+  const [locationData, setLocationData] = useState<LocationSpec>();
+  const [nowAddress, setNowAddress] = useState<string>('')
+
+
+  console.log(imageUrls)
 
   const mapWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -57,15 +59,12 @@ const CreateMemoryModal = ({ isOpen, setIsOpen, refresh }: Props) => {
     postMemory.mutate({
       imageUrls,
       content: memoryContent,
-      address: locationData.address,
-      location: locationData.location,
+      address: nowAddress,
+      location: locationData,
     });
   };
 
-  const isButtonActive =
-    imageUrls.length !== 0 && memoryContent !== '' && locationData
-      ? locationData.address !== '' && locationData.location !== undefined
-      : false;
+  const buttonInActive: boolean = memoryContent === ''
 
   const handleFileUpload = (fileList: FileList | null) => {
     if (fileList === null) {
@@ -74,7 +73,6 @@ const CreateMemoryModal = ({ isOpen, setIsOpen, refresh }: Props) => {
     for (let i = 0; i < fileList.length; i++) {
       const imageRef = ref(storage, `images/${fileList[i].name}`);
       uploadBytes(imageRef, fileList[i]).then((snapshot) => {
-        // 업로드 되자마자 뜨게 만들기
         getDownloadURL(snapshot.ref).then((url) => {
           setImageUrls((prev) => [...prev, url]);
         });
@@ -82,6 +80,7 @@ const CreateMemoryModal = ({ isOpen, setIsOpen, refresh }: Props) => {
       });
     }
   };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -115,25 +114,26 @@ const CreateMemoryModal = ({ isOpen, setIsOpen, refresh }: Props) => {
         <S.Header>
           <S.CancelText onClick={() => setIsOpen(false)}>취소</S.CancelText>
           <S.HeaderTitle>새로운 추억</S.HeaderTitle>
-          <S.EmptySpace />
+          <S.EmptySpace/>
         </S.Header>
         <S.Body>
           <S.BodySection className='MemoryData'>
-            <S.LocationSelector onClick={() => setIsMapOpen(true)}>
-              {locationData!.location.longitude === 0 ? (
+            <S.LocationSelector hasAddress={nowAddress !== ''} onClick={() => setIsMapOpen(true)}>
+              {nowAddress === '' ? (
                 <>
-                  <S.PinMap />
+                  <S.PinMap/>
                   <S.LocationText>위치 정보 없음</S.LocationText>
                 </>
               ) : (
                 <>
-                  <S.PinMap />
-                  <S.LocationText>위치는 어디야</S.LocationText>
+                  <S.PinMap/>
+                  <S.LocationText>위치는 {nowAddress}</S.LocationText>
                 </>
               )}
             </S.LocationSelector>
             {isMapOpen && (
               <MiniMapContainer
+                setNowAddress={setNowAddress}
                 onCloseMap={() => setIsMapOpen(false)}
                 setLocationData={setLocationData}
                 ref={mapWrapperRef}
@@ -141,18 +141,27 @@ const CreateMemoryModal = ({ isOpen, setIsOpen, refresh }: Props) => {
             )}
 
             <S.ImgWrapper>
-              <input
-                style={{ display: 'none' }}
-                type='file'
-                accept={'.png, .jpg, jpeg'}
-                onChange={(e) => handleFileUpload(e.currentTarget.files)}
-              />
-              <S.ImageAddCircle>
-                <S.Plus />
-              </S.ImageAddCircle>
-              <FileDrop onDrop={handleFileUpload}>
-                <></>
-              </FileDrop>
+              {imageUrls.length !== 0 ?
+                <>
+                  <ContentSlider imgList={imageUrls}/>
+                </>
+                :
+                (
+                  <>
+                    <input
+                      style={{display: 'none'}}
+                      type='file'
+                      accept={'.png, .jpg, jpeg'}
+                      onChange={(e) => handleFileUpload(e.currentTarget.files)}
+                    />
+                    <S.ImageAddCircle>
+                      <S.Plus/>
+                    </S.ImageAddCircle>
+                    <FileDrop onDrop={handleFileUpload}>
+                      <></>
+                    </FileDrop>
+                  </>
+                )}
             </S.ImgWrapper>
           </S.BodySection>
           <S.BodySection className='TextAndUpload'>
@@ -161,7 +170,7 @@ const CreateMemoryModal = ({ isOpen, setIsOpen, refresh }: Props) => {
               value={memoryContent}
               onChange={(e) => setMemoryContent(e.currentTarget.value)}
             />
-            <S.DropButton isActive={isButtonActive} onClick={() => isButtonActive && onClickCreateMemoryButton()}>
+            <S.DropButton isActive={!buttonInActive} onClick={() => !buttonInActive && onClickCreateMemoryButton()}>
               드롭하기
             </S.DropButton>
           </S.BodySection>

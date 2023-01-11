@@ -4,6 +4,7 @@ import { Mixin } from '../../common';
 import { ReactComponent as PinMapIcon } from '../../asset/svg/i_pin_map.svg';
 // @ts-ignore
 import { ReactComponent as PlusIcon } from '../../asset/svg/i_plus.svg';
+import Theme from "../../asset/styles/theme";
 
 export const Container = styled.div`
   width: 736px;
@@ -64,15 +65,16 @@ export const BodySection = styled.div`
   }
 `;
 
-export const LocationSelector = styled.div`
+export const LocationSelector = styled.div<{hasAddress: boolean}>`
   width: 100%;
   height: 32px;
-  background-color: #d1d1d1;
+  background-color: ${props => props.hasAddress ? `${Theme.color.lime}` : '#d1d1d1'};
   border-radius: 50px;
   gap: 4px;
   position: relative;
   cursor: pointer;
-  ${Mixin.FlexLayout({ direction: 'row', justify: 'center', align: 'center' })};
+  flex-shrink: 0;
+  ${Mixin.FlexLayout({direction: 'row', justify: 'center', align: 'center'})};
 `;
 
 export const PinMap = styled(PinMapIcon)`
@@ -91,6 +93,14 @@ export const ImgWrapper = styled.label`
   border-radius: 10px;
   cursor: pointer;
   ${Mixin.FlexLayout({ direction: 'row', justify: 'center', align: 'center' })};
+  
+  div:first-child{
+    width: 100%;
+  }
+  img {
+    width: 100%;
+    height: 328px;
+  }
 `;
 export const ImageAddCircle = styled.div`
   width: 48px;

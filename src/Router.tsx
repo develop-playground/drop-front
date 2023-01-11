@@ -34,7 +34,7 @@ async function redirectMain() {
   return null;
 }
 
-async function redirectAuth() {
+async function redirectLogin() {
   const user = cookies.get('accessToken');
   if (!user) {
     return redirectTo('login');
@@ -44,7 +44,7 @@ async function redirectAuth() {
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Outlet />}>
+    <Route path='/' element={<><Outlet /></>}>
       <Route element={<Outlet />} loader={redirectMain}>
         <Route path={'login'} element={<Login />} />
         <Route path={'/oauth'} element={<KakaoLoginCallBackPage />} />
@@ -62,10 +62,9 @@ const router = createBrowserRouter(
             </Wrapper>
           </>
         }
-        loader={redirectAuth}
+        loader={redirectLogin}
       >
         <Route path={''} loader={redirectMain} />
-
         <Route path={`memory`} element={<Feed />} />
         <Route path={`map`} element={<Map />} />
         <Route path={'setting'} element={<Setting />} />

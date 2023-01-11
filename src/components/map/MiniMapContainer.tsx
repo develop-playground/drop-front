@@ -1,6 +1,7 @@
-import React, { Dispatch, ForwardedRef, forwardRef, SetStateAction, useEffect, useRef } from 'react';
+import React, {ForwardedRef, forwardRef, useEffect, useRef} from 'react';
 import styled from 'styled-components';
-import { LocationSpec } from '../modal/CreateMemoryModal';
+import {LocationSpec} from '../modal/CreateMemoryModal';
+
 
 const MapWrapper = styled.div`
   width: 328px;
@@ -15,23 +16,25 @@ const Map = styled.div`
   height: 100%;
 `;
 
-declare global {
-  interface Window {
-    naver: any;
-  }
-}
 
 interface Props {
   onCloseMap(): void;
 
-  setLocationData: Dispatch<SetStateAction<{ address: string; location: LocationSpec }>>;
+  setNowAddress(newAddress: string): void
+
+  setLocationData(newLocationData: LocationSpec): void
 }
 
-const MiniMapContainer = forwardRef(({ setLocationData, onCloseMap }: Props, ref: ForwardedRef<HTMLDivElement>) => {
+const MiniMapContainer = forwardRef(({
+                                       setLocationData,
+                                       onCloseMap,
+                                       setNowAddress
+                                     }: Props, ref: ForwardedRef<HTMLDivElement>) => {
   const mapRef = useRef<HTMLDivElement>(null);
 
+
   useEffect(() => {
-    const { naver } = window;
+    const {naver} = window;
     if (mapRef.current == null) return;
     navigator.geolocation.getCurrentPosition((nowPosition) => {
       const position = new naver.maps.LatLng(nowPosition.coords.latitude, nowPosition.coords.longitude);
@@ -46,22 +49,47 @@ const MiniMapContainer = forwardRef(({ setLocationData, onCloseMap }: Props, ref
         map: map,
       });
 
+
       naver.maps.Event.addListener(map, 'click', function (e: any) {
         marker.setPosition(e.coord);
-
-        setLocationData({
-          address: '',
-          location: { latitude: e.coord.latitudem, longitude: e.coord.longitude },
-        });
+        setLocationData({latitude: e.coord.x, longitude: e.coord.y});
+        window.naver.maps.Service.reverseGeocode(
+          {
+            coords: e.coord,
+            orders: [
+              naver.maps.Service.OrderType.ADDR,
+              naver.maps.Service.OrderType.ROAD_ADDR,
+            ].join(","),
+          },
+          (
+            status: number,
+            response: {
+              v2: {
+                address: {
+                  jibunAddress: string;
+                };
+              };
+            }
+          ) => {
+            if (status !== window.naver.maps.Service.Status.OK) {
+              return alert("Something wrong!");
+            }
+            const result = response.v2;
+            setNowAddress(result.address.jibunAddress);
+          }
+        );
       });
+
     });
+
   }, []);
 
   return (
     <MapWrapper ref={ref}>
-      <Map ref={mapRef} />
+      <Map ref={mapRef}/>
     </MapWrapper>
   );
 });
+
 
 export default MiniMapContainer;

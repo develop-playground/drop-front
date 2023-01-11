@@ -13,6 +13,6 @@ export const usePostApiMemory = (successCallBack: () => void) =>
       content: string;
       location: { latitude: number; longitude: number };
       address: string;
-    }) => postForEntity('api/post', { imageUrls, content, location, address }),
+    }) => postForEntity('api/memory', { imageUrls, content, location, address }),
     { onSuccess: successCallBack }
   );

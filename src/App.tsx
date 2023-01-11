@@ -11,7 +11,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 const App = () => {
   return (
     <QueryClientProvider client={DropQueryClient}>
-      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
+      {/*<ReactQueryDevtools initialIsOpen={true} />*/}
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <RouterProvider router={router} />

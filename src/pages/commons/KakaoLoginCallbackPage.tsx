@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {Cookies} from 'react-cookie';
 import {AuthAtom} from '../../store/authAtom';
 import {useSetRecoilState} from 'recoil';
-import AuthKakaoCallbackDto from '../../data/dto/AuthKakaoCallbackDto';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
@@ -13,33 +12,31 @@ const superRefreshToken =
   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJSRUZSRVNIIiwiYXVkIjoiYWRtaW5AZW1haWwuY29tIiwiaWF0IjoxNjY5ODUzMTI2LCJleHAiOjMzMjA1ODUzMTI2fQ.sTVM0NG_KIF9xZGDsQf0iXCvIghIiPglqpDIszGftMmpdo9K4jJ_KASr9P9Qll0wtN30d1ZROFZ3JALzUTE_Rw';
 const cookies = new Cookies(document.cookie);
 const KakaoLoginCallbackPage = () => {
-  const setAuthAtom = useSetRecoilState(AuthAtom);
-  const permissionCode = window.location.search.substring(6);
-  const navigate = useNavigate();
+    const setAuthAtom = useSetRecoilState(AuthAtom);
+    const permissionCode = window.location.search.substring(6);
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    if (permissionCode) {
-      getAuthToken().then((r) => {
+    useEffect(() => {
+      if (permissionCode) {
         alert('완료')
-        setAuthAtom(r as unknown as AuthKakaoCallbackDto);
-        // @ts-ignore
-        setCookiesForAuth(r.accessToken, r.refreshToken);
+        setCookiesForAuth(superAccessToken, superRefreshToken)
+        // setAuthAtom(r as unknown as AuthKakaoCallbackDto);
         navigate('/');
-      })
-        .catch((e) => alert(e.name));
-    }
-  }, [permissionCode])
+
+        // @ts-ignore
+        // setCookiesForAuth(r.accessToken, r.refreshToken);
+      }
+    }, [permissionCode])
 
 
-  const getAuthToken = async () => {
-    await axios('http://3.34.194.171/api/auth/kakao/callback', {
-      method: 'GET',
-      params: {code: `${permissionCode}`}
-    })
-  }
+    // const getAuthToken = async () => {
+    //   await axios('http://3.34.194.171/api/auth/kakao/callback', {
+    //     method: 'GET',
+    //     params: {code: `${permissionCode}`}
+    //   })
 
-  return <div>카카오로 로그인 중...</div>;
-};
+    return <div>카카오로 로그인 중...</div>;
+  };
 
 function setCookiesForAuth(accessToken: string, refreshToken: string) {
   console.log(accessToken);
